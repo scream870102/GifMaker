@@ -1,0 +1,32 @@
+{
+  "version": 2,
+  "dgSpecHash": "y86QJpiTjde3vyrna72dfkj1UkA6zlY+YebBiugsKAJVQ+vV8G4GTvTTGTp8aCJ22qJZ/9iVur9Hz+S5us0LIA==",
+  "success": true,
+  "projectFilePath": "C:\\Scream\\Project\\GifMaker\\GifMaker\\GifMaker.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Scream\\.nuget\\packages\\windowsapicodepack-core\\1.1.1\\windowsapicodepack-core.1.1.1.nupkg.sha512",
+    "C:\\Users\\Scream\\.nuget\\packages\\windowsapicodepack-shell\\1.1.1\\windowsapicodepack-shell.1.1.1.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "已使用 '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' 而非專案目標架構 '.NETCoreApp,Version=v3.1' 還原了套件 'WindowsAPICodePack-Core 1.1.1'。此套件與您的專案並非完全相容。",
+      "libraryId": "WindowsAPICodePack-Core",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "已使用 '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' 而非專案目標架構 '.NETCoreApp,Version=v3.1' 還原了套件 'WindowsAPICodePack-Shell 1.1.1'。此套件與您的專案並非完全相容。",
+      "libraryId": "WindowsAPICodePack-Shell",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    }
+  ]
+}
