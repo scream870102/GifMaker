@@ -317,15 +317,15 @@
                     </ScrollViewer>
                 </Grid>
                 <Grid Margin="10" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1">
-                    <StackPanel>
-                        <Label Content="File name (MomokoKawaii)" Foreground="Gainsboro" Background="{x:Null}" FontFamily="Segoe UI"/>
-                        <TextBox Margin="0,0,0,15" x:Name="ExportTextBox" Text="モニモニ" Foreground="#FFE4E4E4" BorderBrush="{x:Null}" Background="#FF1D1D1D" FontFamily="Segoe UI" FontWeight="Bold"/>
-                        <Label Content="Export Width:Height(720:-1)" Foreground="Gainsboro" Background="{x:Null}" FontFamily="Segoe UI"/>
-                        <TextBox Margin="0,0,0,15" x:Name="ScaleTextBox" Foreground="#FFE4E4E4" BorderBrush="{x:Null}" Background="#FF1D1D1D" FontFamily="Segoe UI" FontWeight="Bold"/>
-                        <Label Content="Fps (10)" Foreground="Gainsboro" Background="{x:Null}" FontFamily="Segoe UI"/>
-                        <TextBox Margin="0,0,0,15" x:Name="FpsTextBox" Foreground="#FFE4E4E4" BorderBrush="{x:Null}" Background="#FF1D1D1D" FontFamily="Segoe UI" FontWeight="Bold"/>
-                        <Label Content="Time Span in second (9.13)" Foreground="Gainsboro" Background="{x:Null}" FontFamily="Segoe UI"/>
-                        <Grid Margin="0,0,0,15">
+                    <DockPanel>
+                        <Label DockPanel.Dock="Top" Content="File name (MomokoKawaii)" Foreground="Gainsboro" Background="{x:Null}" FontFamily="Segoe UI"/>
+                        <TextBox DockPanel.Dock="Top" Margin="0,0,0,15" x:Name="ExportTextBox" Text="モニモニ" Foreground="#FFE4E4E4" BorderBrush="{x:Null}" Background="#FF1D1D1D" FontFamily="Segoe UI" FontWeight="Bold"/>
+                        <Label DockPanel.Dock="Top" Content="Export Width:Height(720:-1)" Foreground="Gainsboro" Background="{x:Null}" FontFamily="Segoe UI"/>
+                        <TextBox DockPanel.Dock="Top" Margin="0,0,0,15" x:Name="ScaleTextBox" Foreground="#FFE4E4E4" BorderBrush="{x:Null}" Background="#FF1D1D1D" FontFamily="Segoe UI" FontWeight="Bold"/>
+                        <Label DockPanel.Dock="Top" Content="Fps (10)" Foreground="Gainsboro" Background="{x:Null}" FontFamily="Segoe UI"/>
+                        <TextBox DockPanel.Dock="Top" Margin="0,0,0,15" x:Name="FpsTextBox" Foreground="#FFE4E4E4" BorderBrush="{x:Null}" Background="#FF1D1D1D" FontFamily="Segoe UI" FontWeight="Bold"/>
+                        <Label DockPanel.Dock="Top" Content="Time Span in second (9.13)" Foreground="Gainsboro" Background="{x:Null}" FontFamily="Segoe UI"/>
+                        <Grid DockPanel.Dock="Top" Margin="0,0,0,15">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="0.5*"/>
                                 <ColumnDefinition Width="0.5*"/>
@@ -333,8 +333,8 @@
                             <TextBox Grid.Column="0" x:Name="FromTextBox" Text="From" Margin="0,0,10,0" Foreground="#FFE4E4E4" BorderBrush="{x:Null}" Background="#FF1D1D1D" FontFamily="Segoe UI" FontWeight="Bold"/>
                             <TextBox Grid.Column="1" x:Name="ToTextBox" Text="To" Margin="10,0,0,0" Foreground="#FFE4E4E4" BorderBrush="{x:Null}" Background="#FF1D1D1D" FontFamily="Segoe UI" FontWeight="Bold"/>
                         </Grid>
-                        <Label Content="Crop Width and Height , 0 = no crop" Foreground="Gainsboro" Background="{x:Null}" FontFamily="Segoe UI"/>
-                        <Grid Margin="0,0,0,15">
+                        <Label DockPanel.Dock="Top" Content="Crop Width and Height , 0 = no crop" Foreground="Gainsboro" Background="{x:Null}" FontFamily="Segoe UI"/>
+                        <Grid DockPanel.Dock="Top" Margin="0,0,0,15">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="0.5*"/>
                                 <ColumnDefinition Width="0.5*"/>
@@ -342,8 +342,8 @@
                             <TextBox Grid.Column="0" x:Name="WidthTextBox" Text="Width" Margin="0,0,10,0" Foreground="#FFE4E4E4" BorderBrush="{x:Null}" Background="#FF1D1D1D" FontFamily="Segoe UI" FontWeight="Bold"/>
                             <TextBox Grid.Column="1" x:Name="HeightTextBox" Text="Height" Margin="10,0,0,0" Foreground="#FFE4E4E4" BorderBrush="{x:Null}" Background="#FF1D1D1D" FontFamily="Segoe UI" FontWeight="Bold"/>
                         </Grid>
-                        <Label Content="The start point of crop ( X , Y )" Foreground="Gainsboro" Background="{x:Null}" FontFamily="Segoe UI"/>
-                        <Grid Margin="0,0,0,15">
+                        <Label DockPanel.Dock="Top" Content="The start point of crop ( X , Y )" Foreground="Gainsboro" Background="{x:Null}" FontFamily="Segoe UI"/>
+                        <Grid DockPanel.Dock="Top" Margin="0,0,0,15">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="0.5*"/>
                                 <ColumnDefinition Width="0.5*"/>
@@ -351,8 +351,10 @@
                             <TextBox Grid.Column="0" x:Name="XTextBox" Text="X" Margin="0,0,10,0" Foreground="#FFE4E4E4" BorderBrush="{x:Null}" Background="#FF1D1D1D" FontFamily="Segoe UI" FontWeight="Bold"/>
                             <TextBox Grid.Column="1" x:Name="YTextBox" Text="Y" Margin="10,0,0,0" Foreground="#FFE4E4E4" BorderBrush="{x:Null}" Background="#FF1D1D1D" FontFamily="Segoe UI" FontWeight="Bold"/>
                         </Grid>
-                        <TextBlock x:Name="FileInfoTextBlock" TextWrapping="Wrap" Foreground="White" Margin="10" FontFamily="Segoe UI" FontWeight="Bold" Focusable="True"/>
-                    </StackPanel>
+                        <ScrollViewer DockPanel.Dock="Top" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Disabled">
+                            <TextBlock x:Name="FileInfoTextBlock" TextWrapping="Wrap" Foreground="White" Margin="10" FontFamily="Segoe UI" FontWeight="Bold" Focusable="True"/>
+                        </ScrollViewer>
+                    </DockPanel>
                 </Grid>
                 
                 <Grid Margin="10" Grid.Column="1" Grid.Row="0">

@@ -101,9 +101,33 @@ namespace GifMaker
             var command = new StringBuilder();
             var dur = Convert.ToDouble(ToTextBox.Text) - Convert.ToDouble(FromTextBox.Text);
             if (rect.Width == 0 || rect.Height == 0)
-                command.Append($"-ss {FromTextBox.Text} -t {dur} -i \"{Media.Source.LocalPath}\" -vf \"fps={FpsTextBox.Text},scale = {ScaleTextBox.Text}:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse\" -loop 0 \"{path.ToString()}\"");
+            {
+                var scaleProps = ScaleTextBox.Text.Split(':');
+                var sW = Convert.ToInt32(scaleProps[0]);
+                var sH = Convert.ToInt32(scaleProps[1]);
+                sW = sW == -1 ? (int)mediaInfo.Width : sW;
+                var sFactor = (double)sW / mediaInfo.Width;
+                sH = sH == -1 ? (int)(mediaInfo.Height * sFactor) : sH;
+                var scale = sW.ToString() + ":" + sH.ToString();
+
+                command.Append($"-ss {FromTextBox.Text} -t {dur} -i \"{Media.Source.LocalPath}\" -vf \"fps={FpsTextBox.Text},scale = {scale}:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse\" -loop 0 \"{path.ToString()}\"");
+            }
             else
-                command.Append($"-ss {FromTextBox.Text} -t {dur} -i \"{Media.Source.LocalPath}\" -vf \"fps={FpsTextBox.Text},crop = {rect.Width}:{rect.Height}:{rect.X}:{rect.Y},scale = {ScaleTextBox.Text}:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse\" -loop 0 \"{path.ToString()}\"");
+            {
+                var x = rect.X / mediaInfo.WidthFactor;
+                var y = rect.Y / mediaInfo.HeightFactor;
+                var w = rect.Width/mediaInfo.WidthFactor;
+                var h = rect.Height/mediaInfo.HeightFactor;
+
+                var scaleProps = ScaleTextBox.Text.Split(':');
+                var sW = Convert.ToInt32(scaleProps[0]);
+                var sH = Convert.ToInt32(scaleProps[1]);
+                sW = sW == -1 ? (int)rect.Width : sW;
+                var sFactor = (double)sW / rect.Width;
+                sH = sH == -1 ? (int)(rect.Height*sFactor) : sH;
+                var scale = sW.ToString() + ":" + sH.ToString();
+                command.Append($"-ss {FromTextBox.Text} -t {dur} -i \"{Media.Source.LocalPath}\" -vf \"fps={FpsTextBox.Text},crop = {w}:{h}:{x}:{y},scale = {scale}:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse\" -loop 0 \"{path.ToString()}\"");
+            }
             UpdateLog($"Export Command : {command}\n\n");
             FFMpegHandler.ExecuteFFMpeg(command.ToString());
             Process.Start("explorer.exe", "/select, \"" + Assembly.GetEntryAssembly().Location);
@@ -165,7 +189,9 @@ namespace GifMaker
             {
                 UpdateLog($"Open File Succeess\n");
                 ShellFile shellFile = ShellFile.FromFilePath(Media.Source.LocalPath);
-                mediaInfo = new MediaInfo(Media.NaturalVideoWidth, Media.NaturalVideoHeight, Media.NaturalDuration.TimeSpan.TotalSeconds, (uint)(shellFile.Properties.System.Video.FrameRate.Value / 1000));
+                var width = shellFile.Properties.System.Video.FrameWidth.Value.Value;
+                var height = shellFile.Properties.System.Video.FrameHeight.Value.Value;
+                mediaInfo = new MediaInfo((uint)Media.NaturalVideoWidth, (uint)Media.NaturalVideoHeight, Media.NaturalDuration.TimeSpan.TotalSeconds, (uint)(shellFile.Properties.System.Video.FrameRate.Value / 1000),width,height);
                 rect = new Rect(mediaInfo, Media);
                 UpdateRect();
                 FromTextBox.Text = "0.0";
@@ -179,10 +205,13 @@ namespace GifMaker
                 var info = new StringBuilder($"File Name : {System.IO.Path.GetFileName(Media.Source.LocalPath)}\n");
                 info.Append($"Width : {mediaInfo.Width}\n");
                 info.Append($"Height : {mediaInfo.Height}\n");
+                info.Append($"Width Factor : {mediaInfo.WidthFactor.ToString("0.000")}\n");
+                info.Append($"Height Factor : {mediaInfo.HeightFactor.ToString("0.000")}\n");
                 info.Append($"Duration : {TimeSpan.FromSeconds(mediaInfo.Duration).ToString(@"mm\:ss")}\n");
                 info.Append($"Fps : {mediaInfo.FrameRate}\n");
                 info.Append($"Frame/sec : {fpsSec.ToString("0.000")} sec\n");
                 FileInfoTextBlock.Text = info.ToString();
+                
             }
         }
 
@@ -234,8 +263,8 @@ namespace GifMaker
             {
                 res = Math.Clamp(res, 0, (uint)mediaInfo.Width-rect.Width);
                 rect.X = res;
-                UpdateRect();
             }
+            UpdateRect();
         }
 
         private void YTextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -247,8 +276,8 @@ namespace GifMaker
             {
                 res =Math.Clamp(res, 0, (uint)mediaInfo.Height-rect.Height);
                 rect.Y = res;
-                UpdateRect();
             }
+            UpdateRect();
         }
 
         private void WidthTextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -260,8 +289,8 @@ namespace GifMaker
             {
                 res = Math.Clamp(res, 0, (uint)mediaInfo.Width-rect.X);
                 rect.Width = res;
-                UpdateRect();
             }
+            UpdateRect();
         }
 
         private void HeightTextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -273,8 +302,8 @@ namespace GifMaker
             {
                 res = Math.Clamp(res, 0, (uint)mediaInfo.Height-rect.Y);
                 rect.Height = res;
-                UpdateRect();
             }
+            UpdateRect();
         }
 
         #endregion
@@ -343,15 +372,19 @@ namespace GifMaker
     {
         public double Duration { get; private set; } = 0.0;
         public uint FrameRate { get; private set; } = 0;
-        public int Width { get; private set; } = 0;
-        public int Height { get; private set; } = 0;
+        public uint Width { get; private set; } = 0;
+        public uint Height { get; private set; } = 0;
+        public double WidthFactor { get; private set; } = 0.0;
+        public double HeightFactor { get; private set; } = 0.0;
 
-        public MediaInfo(int width, int height, double duration, uint frameRate)
+        public MediaInfo(uint width, uint height, double duration, uint frameRate,uint actualWidth,uint actulaHeight)
         {
             Width = width;
             Height = height;
             Duration = duration;
             FrameRate = frameRate;
+            WidthFactor = (double)width / actualWidth;
+            HeightFactor = (double)height / actulaHeight;
         }
     }
 
