@@ -1,5 +1,12 @@
-# GifMaker
+# GifMaker 
+![](https://img.shields.io/github/v/tag/scream870102/GifMaker?color=E861A4&label=version&logo=github)
+![](https://img.shields.io/github/last-commit/scream870102/GifMaker?color=60C5F1)  
+
+  
 載入影片以後 可以快速擷取片段生成GIF  
+
+![](Resources/Screenshot.jpg)
+
 
 ## 使用說明
 - Open - 開啟影片檔  
@@ -11,8 +18,6 @@
 - To - 設定當前時間點 為結束時間點
 - Null - 跳轉到指定時間點
 
-- MLB - 設定圈選範圍
-- MRB - 重設圈選範圍  
 
 ### 快捷鍵
 - ESC - 離開文字輸入框
@@ -21,6 +26,8 @@
 - C - 設定當前時間點 為開始時間點
 - V - 設定當前時間點 為結束時間點
 - Space - 播放/暫停
+- Mouse Left Button - 設定圈選範圍
+- Mouse Right Button - 重設圈選範圍  
 
 ---
 
