@@ -64,11 +64,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Scream\\Project\\GifMaker\\GifMaker\\GifMaker.csproj",
+      "projectUniqueName": "D:\\Project\\GifMaker\\GifMaker\\GifMaker.csproj",
       "projectName": "GifMaker",
-      "projectPath": "C:\\Scream\\Project\\GifMaker\\GifMaker\\GifMaker.csproj",
+      "projectPath": "D:\\Project\\GifMaker\\GifMaker\\GifMaker.csproj",
       "packagesPath": "C:\\Users\\Scream\\.nuget\\packages\\",
-      "outputPath": "C:\\Scream\\Project\\GifMaker\\GifMaker\\obj\\",
+      "outputPath": "D:\\Project\\GifMaker\\GifMaker\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Scream\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -108,10 +108,29 @@
           "net47",
           "net471",
           "net472",
-          "net48"
+          "net48",
+          "net481"
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[3.1.10, 3.1.10]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[3.1.32, 3.1.32]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[3.1.0, 3.1.0]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[3.1.0, 3.1.0]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
@@ -120,7 +139,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.200\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
       }
     }
   },
@@ -129,7 +148,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "已使用 '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' 而非專案目標架構 '.NETCoreApp,Version=v3.1' 還原了套件 'WindowsAPICodePack-Core 1.1.1'。此套件與您的專案並非完全相容。",
+      "message": "已使用 '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' 而非專案目標架構 '.NETCoreApp,Version=v3.1' 還原了套件 'WindowsAPICodePack-Core 1.1.1'。此套件與您的專案並非完全相容。",
       "libraryId": "WindowsAPICodePack-Core",
       "targetGraphs": [
         ".NETCoreApp,Version=v3.1"
@@ -139,7 +158,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "已使用 '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' 而非專案目標架構 '.NETCoreApp,Version=v3.1' 還原了套件 'WindowsAPICodePack-Shell 1.1.1'。此套件與您的專案並非完全相容。",
+      "message": "已使用 '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' 而非專案目標架構 '.NETCoreApp,Version=v3.1' 還原了套件 'WindowsAPICodePack-Shell 1.1.1'。此套件與您的專案並非完全相容。",
       "libraryId": "WindowsAPICodePack-Shell",
       "targetGraphs": [
         ".NETCoreApp,Version=v3.1"
